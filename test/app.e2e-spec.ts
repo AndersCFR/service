@@ -15,10 +15,20 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  const mockMessage = {
+    message: "This is a test",
+    to: "Juan Perez",
+    from: "Rita Asturia",
+    timeTolifeSec: 45
+  }
+
+  it('/DevOps (POST)', () => {
     return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+      .post('/DevOps')
+      .send(mockMessage)
+      .expect(201)
+      .expect({
+        "message": "Hello Juan Perez your message will be send"
+      });
   });
 });

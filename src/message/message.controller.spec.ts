@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { MessagePayloadDto } from './dto/message-payload';
 import { MessageController } from './message.controller';
 import { MessageService } from './message.service';
 
@@ -17,10 +18,18 @@ describe('MessageController', () => {
   });
 
   
-  it('should return an array of cats', async () => {
-      const result = ['Hello Juan Perez your message will be send'];
-      //jest.spyOn(catsService, 'findAll').mockImplementation(() => result);
-      //expect(await controller.findAll()).toBe(result);
+  it('it should be the right ', async () => {
+      const result = 'Hello Juan Perez your message will be send';
+      const testPayload = new MessagePayloadDto({
+        message: 'This is a test',
+        to: 'Juan Perez',
+        from: 'Rita Asturia',
+        timeToLifeSec: 45
+      })
+
+      expect(await 
+        (await controller.getUserBalance(new MessagePayloadDto(testPayload))).message)
+        .toBe(result);
   });
 
 });
