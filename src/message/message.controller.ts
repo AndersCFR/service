@@ -5,16 +5,12 @@ import { ResponsePayloadDto } from './dto/response-payload';
 
 @Controller('')
 export class MessageController {
+  constructor(private readonly messageService: MessageService) {}
 
-    constructor(
-        private readonly messageService: MessageService,
-    ) {}
-
-    @Post('/DevOps')
-    async getUserBalance(
-        @Body() message: MessagePayloadDto,
-    ): Promise<ResponsePayloadDto> {
-        return this.messageService.getMessage(message.to);
-    }
-
+  @Post('/DevOps')
+  async getUserBalance(
+    @Body() message: MessagePayloadDto,
+  ): Promise<ResponsePayloadDto> {
+    return this.messageService.getMessage(message.to);
+  }
 }

@@ -16,11 +16,11 @@ describe('AppController (e2e)', () => {
   });
 
   const mockMessage = {
-    message: "This is a test",
-    to: "Juan Perez",
-    from: "Rita Asturia",
-    timeTolifeSec: 45
-  }
+    message: 'This is a test',
+    to: 'Juan Perez',
+    from: 'Rita Asturia',
+    timeTolifeSec: 45,
+  };
 
   it('/DevOps (POST)', () => {
     return request(app.getHttpServer())
@@ -28,7 +28,7 @@ describe('AppController (e2e)', () => {
       .send(mockMessage)
       .expect(201)
       .expect({
-        "message": "Hello Juan Perez your message will be send"
+        message: 'Hello Juan Perez your message will be send',
       });
   });
 });

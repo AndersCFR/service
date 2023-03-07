@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  message-service:
+    container_name: message-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start
+    restart: unless-stopped
+
+  # Nest JS testing server
+  test-message-service:
+    container_name: test-message-service
+    build:
+      context: .
+      dockerfile: test.Dockerfile
+    command: >
+      sh -c "
+        npm run test &&
+        npm run test:e2e"
